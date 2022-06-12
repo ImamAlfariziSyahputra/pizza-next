@@ -103,13 +103,13 @@ export default function Product({ pizza }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
-  );
+  const res = await fetch(`http://localhost:3000/api/products/${params.id}`);
+
+  const data = await res.json();
 
   return {
     props: {
-      pizza: res.data,
+      pizza: data,
     },
   };
 }
